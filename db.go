@@ -78,7 +78,7 @@ func (fp *DbClientFunctionalityProvider) OnClientUpdate(ci *hurlean.ClientInstan
 
 // external
 
-func Connect(url string) (Db, error) {
+func Connect(url string) (*Db, error) {
 	
 	// disable hurlean debug prints
 	hurlean.EnableDebug = false
@@ -122,7 +122,7 @@ func Connect(url string) (Db, error) {
 	
 	fp.connectionWaitGroup.Wait()
 	
-	return Db{ ip, port, dbName, username, password, fp }, fp.connectionError
+	return &Db{ ip, port, dbName, username, password, fp }, fp.connectionError
 }
 
 type Db struct {
